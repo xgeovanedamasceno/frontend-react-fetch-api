@@ -1,12 +1,7 @@
 # Front-End Fetch API - React App
 
+This project is a React App that makes a request to an API and renders its response.
+
+The main objective of this project is the development of tests as a way to practice and learn React JS, Testing Library and Jest.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-This project is a solution for the challenge below
-
-Utilize a API abaixo para puxar a lista de produto
-https://ranekapi.origamid.dev/json/api/produto
-Cada produto possui o id, o mesmo pode ser passado na api para retornar os dados desse produto específico
-https://ranekapi.origamid.dev/json/api/produto/notebook
-
-
