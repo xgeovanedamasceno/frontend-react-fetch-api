@@ -42,5 +42,18 @@ console.error
         at I (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/node_modules/styled-components/src/models/StyledComponent.js:252:3)
         at Anchor (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/src/components/Anchor/index.js:4:19)
 
+## PropTypes for children components
+
+- propType "children" is not required, but has no corresponding defaultProps declaration.
+(https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md)
+
+console.error
+    Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Nav`, expected a single ReactElement.
+        at Nav (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/src/components/Nav/index.js:3:16)
+
+https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html
+
+https://oieduardorabelo.medium.com/react-avan%C3%A7ado-utilizando-props-children-como-fun%C3%A7%C3%A3o-de-primeira-classe-f6be8acdfaf1
+
 
 
