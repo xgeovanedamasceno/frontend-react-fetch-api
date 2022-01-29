@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AnchorStyle = styled.a`
+const AnchorStyle = styled.span`
   background-color: #F6F8FA;
   border-radius: 5px;
   color: #24292F;
