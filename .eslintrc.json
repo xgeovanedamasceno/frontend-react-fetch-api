@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -18,7 +19,9 @@
         "react"
     ],
     "rules": {
-        "comma-dangle": ["error", "never"]
-        /* "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }] */
+        "comma-dangle": ["error", "never"],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }
