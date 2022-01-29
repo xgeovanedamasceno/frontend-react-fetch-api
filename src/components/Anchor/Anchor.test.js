@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 import Anchor from '.';
 
 describe('Anchor', () => {
@@ -19,7 +21,11 @@ describe('Anchor', () => {
     expect(anchorEl).toHaveAttribute('href', '#exemplo');
   });
 
-  it('should render an anchor element with background-color: #F6F8FA', () => {
-    // Snapshot tests?
+  it('should render correctly', () => {
+    const tree = renderer
+      .create(<Anchor url="#exemplo" name="Products" />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 });
