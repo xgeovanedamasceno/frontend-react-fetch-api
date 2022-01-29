@@ -1,4 +1,4 @@
-# FrontEnd Fetch Origamid API - React App
+# Front-End Fetch API - React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
