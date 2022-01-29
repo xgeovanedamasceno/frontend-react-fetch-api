@@ -33,5 +33,14 @@ https://medium.com/welldone-software/unit-testing-styled-components-92dac6249f14
 
 https://javascript.plainenglish.io/a-beginners-guide-to-behaviour-testing-in-react-faf098a8c232
 
+## 5. Validate DOM Nesting
+
+console.error
+    Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>.
+        at a
+        at a
+        at I (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/node_modules/styled-components/src/models/StyledComponent.js:252:3)
+        at Anchor (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/src/components/Anchor/index.js:4:19)
+
 
 
