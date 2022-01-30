@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import Contact from '../pages/Contact';
+import Nav from '../components/Nav';
 
 function App() {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/" element={<Home title="React APP" subtitle="Fetching an API" />} />
         <Route path="products" element={<Products title="Products Page" />} />
