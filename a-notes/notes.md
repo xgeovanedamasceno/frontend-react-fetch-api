@@ -153,7 +153,3 @@ const server = setupServer(
   })
 );
 ```
-
-
-
-
