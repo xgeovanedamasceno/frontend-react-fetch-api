@@ -1,16 +1,14 @@
-import PropTypes from 'prop-types';
-/* import Anchor from '../Anchor'; */
+import { Link } from 'react-router-dom';
+import NavStyle from './styled';
 
-function Nav({ children }) {
+function Nav() {
   return (
-    <nav>
-      { children }
-    </nav>
+    <NavStyle>
+      <Link to="/">Home</Link>
+      <Link to="products">Products</Link>
+      <Link to="contact">Contact</Link>
+    </NavStyle>
   );
 }
-
-Nav.propTypes = {
-  children: PropTypes.element.isRequired
-};
 
 export default Nav;
