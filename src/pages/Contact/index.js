@@ -1,9 +1,12 @@
 import propTypes from 'prop-types';
 import Title from '../../components/Title';
+import MainContainerStyle from '../../components/MainContainer/styled';
 
 function Contact({ title }) {
   return (
-    <Title>{ title }</Title>
+    <MainContainerStyle>
+      <Title>{ title }</Title>
+    </MainContainerStyle>
   );
 }
 
