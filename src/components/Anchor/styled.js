@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const AnchorStyle = styled.span`
-  background-color: #F6F8FA;
+  background-color: tomato;
   border-radius: 5px;
   color: #24292F;
-  padding: 16px 8px;
+  margin: 0 10px;
+  padding: 5px 10px;
 `;
 
 export default AnchorStyle;
