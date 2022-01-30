@@ -42,7 +42,7 @@ console.error
         at I (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/node_modules/styled-components/src/models/StyledComponent.js:252:3)
         at Anchor (/home/xdgeo/Documents/dev-projects/frontend-react-fetch-api/src/components/Anchor/index.js:4:19)
 
-## PropTypes for children components
+## 6. PropTypes for children components
 
 - propType "children" is not required, but has no corresponding defaultProps declaration.
 (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md)
@@ -54,6 +54,106 @@ console.error
 https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html
 
 https://oieduardorabelo.medium.com/react-avan%C3%A7ado-utilizando-props-children-como-fun%C3%A7%C3%A3o-de-primeira-classe-f6be8acdfaf1
+
+## 7. Warning: Can't perform a React state update on an unmounted component.
+
+https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component
+
+before:
+```
+useEffect(() => {
+    fetch('https://ranekapi.origamid.dev/json/api/produto')
+      .then((response) => response.json())
+      .then((data) => {
+        if (isMounted) setProducts(data);
+    });
+  }, []);
+```
+
+after:
+```
+useEffect(() => {
+    let isMounted = true;
+
+    fetch('https://ranekapi.origamid.dev/json/api/produto')
+      .then((response) => response.json())
+      .then((data) => {
+        if (isMounted) setProducts(data);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+```
+
+
+## 8. Do not use Array index in keys
+
+https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
+
+before:
+```
+function renderProducts() {
+    return (
+      <ul>
+        {products.map((product, index) => (
+          <li key={`${product.id}${index}`}>
+            <img src={product.fotos[0].src} alt={product.fotos[0].titulo} />
+            <h2>{product.nome}</h2>
+            <p>{product.preco}</p>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+```
+
+after:
+```
+function renderProducts() {
+    return (
+      <ul>
+        {products.map((product, index) => (
+          <li key={`${product.id}${product.id + index}`}>
+            <img src={product.fotos[0].src} alt={product.fotos[0].titulo} />
+            <h2>{product.nome}</h2>
+            <p>{product.preco}</p>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+```
+
+## 9. Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`.
+
+https://eslint.org/docs/rules/arrow-body-style
+
+before
+```
+const server = setupServer(
+  rest.get('https://ranekapi.origamid.dev/json/api/produto', (req, res, ctx) => {
+    return res(
+      ctx.json(mockResponse)
+    );
+  })
+);
+```
+
+after:
+```
+
+const server = setupServer(
+  rest.get('https://ranekapi.origamid.dev/json/api/produto', (req, res, ctx) => {
+    const mockedResponse = res(
+      ctx.json(mockResponse)
+    );
+    return mockedResponse;
+  })
+);
+```
+
 
 
 
