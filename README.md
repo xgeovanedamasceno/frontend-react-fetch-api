@@ -4,7 +4,7 @@ This project is a React App that makes a request to an API and renders its respo
 
 The main objective of this project is the development of tests as a way to practice and learn React JS, Testing Library and Jest.
 
-This Project follow the Convertional Commits (https://www.conventionalcommits.org/en/v1.0.0/).
+This Project follow the Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## Learnings
 
