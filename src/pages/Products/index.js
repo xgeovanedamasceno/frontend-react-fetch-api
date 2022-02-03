@@ -26,13 +26,13 @@ function Products({ title }) {
       <ul>
         <MainContainerStyle>
           {products.map((product, index) => (
-            <WrapperProductItem>
-              <li key={`${product.id}${product.id + index}`}>
+            <li key={`${product.id}${product.id + index}`}>
+              <WrapperProductItem>
                 <img src={product.fotos[0].src} alt={product.fotos[0].titulo} />
                 <h2>{product.nome}</h2>
                 <p>{`$ ${product.preco}`}</p>
-              </li>
-            </WrapperProductItem>
+              </WrapperProductItem>
+            </li>
           ))}
         </MainContainerStyle>
       </ul>
