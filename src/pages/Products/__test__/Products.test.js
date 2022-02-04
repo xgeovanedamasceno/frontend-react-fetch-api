@@ -1,11 +1,20 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import server from '../../../__mocks__/server';
 import Products from '..';
 
+function MockProducts() {
+  return (
+    <BrowserRouter>
+      <Products title="Products Page" />
+    </BrowserRouter>
+  );
+}
+
 describe('Products', () => {
   beforeEach(() => {
-    render(<Products title="Products Page" />);
+    render(<MockProducts />);
   });
 
   beforeAll(() => server.listen());
@@ -26,6 +35,7 @@ describe('Products', () => {
 
   it('should render 9 fetched data items', async () => {
     const listItemsEl = await screen.findAllByRole('listitem');
+    screen.debug();
 
     expect(listItemsEl.length).toBe(9);
   });
