@@ -241,3 +241,6 @@ const productServer = setupServer(
   })
 );
 ```
+
+To see: 
+https://github.com/testing-library/react-testing-library/issues/654
