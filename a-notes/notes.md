@@ -153,3 +153,91 @@ const server = setupServer(
   })
 );
 ```
+
+## 10. Test fails when url not match
+
+```
+ console.warn
+    [MSW] Warning: captured a request without a matching request handler:
+    
+      • GET https://ranekapi.origamid.dev/json/api/produto/undefined
+    
+    If you still wish to intercept this unhandled request, please create a request handler for it.
+    Read more: https://mswjs.io/docs/getting-started/mocks
+```
+
+code:
+```
+// Product/index.js
+
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`https://ranekapi.origamid.dev/json/api/produto/${params.id}`)
+      .then((response) => response.json())
+      .then((data) => setProduct(data));
+  }, []);
+```
+
+mockResponse:
+```
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+
+const mockResponse = {
+  id: 'notebook',
+  fotos: [
+    {
+      titulo: 'notebook-2',
+      src: 'https://ranekapi.origamid.dev/wp-content/uploads/2019/03/notebook.jpg'
+    },
+    {
+      titulo: 'smartphone',
+      src: 'https://ranekapi.origamid.dev/wp-content/uploads/2019/03/smartphone.jpg'
+    }
+  ],
+  nome: 'Notebook',
+  preco: '2499.50'
+};
+
+const productID = 'notebook';
+
+const productServer = setupServer(
+  rest.get(`https://ranekapi.origamid.dev/json/api/produto/${productID}`, (req, res, ctx) => {
+    const mockedResponse = res(
+      ctx.json(mockResponse)
+    );
+    return mockedResponse;
+  })
+);
+
+export default productServer;
+```
+###### The problem?
+
+Test fails when url not match. The url must be the equals. For example:
+
+```
+// Product/index.js
+
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`https://ranekapi.origamid.dev/json/api/produto/notebook`)
+      .then((response) => response.json())
+      .then((data) => setProduct(data));
+  }, []);
+```
+
+```
+// mockResponse - product-server.js
+
+const productServer = setupServer(
+  rest.get(`https://ranekapi.origamid.dev/json/api/produto/notebook`, (req, res, ctx) => {
+    const mockedResponse = res(
+      ctx.json(mockResponse)
+    );
+    return mockedResponse;
+  })
+);
+```
