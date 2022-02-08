@@ -8,7 +8,7 @@ describe('Product', () => {
     render(<Product />);
   });
 
-  beforeAll(() => productServer.listen({ onUnhandledRequest: 'bypass' }));
+  beforeAll(() => productServer.listen());
   afterAll(() => productServer.close());
 
   it('should render an img', async () => {
