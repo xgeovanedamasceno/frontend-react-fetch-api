@@ -244,3 +244,9 @@ const productServer = setupServer(
 
 To see: 
 https://github.com/testing-library/react-testing-library/issues/654
+
+https://medium.com/@aarling/mocking-a-react-router-match-object-in-your-component-tests-fa95904dcc55
+
+https://spectrum.chat/testing-library/help-react/attempting-to-test-react-router-match~b0550426-f54a-4b76-b402-c7b32204b55e
+
+https://stackoverflow.com/questions/63801455/how-to-use-memoryrouter-in-order-to-test-useparams-call
