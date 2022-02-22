@@ -250,3 +250,76 @@ https://medium.com/@aarling/mocking-a-react-router-match-object-in-your-componen
 https://spectrum.chat/testing-library/help-react/attempting-to-test-react-router-match~b0550426-f54a-4b76-b402-c7b32204b55e
 
 https://stackoverflow.com/questions/63801455/how-to-use-memoryrouter-in-order-to-test-useparams-call
+
+Code that I have tried:
+
+```
+import '@testing-library/jest-dom';
+import { screen, render } from '@testing-library/react';
+import { BrowserRouter, Route, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import Product from '..';
+/* import productServer from '../../../__mocks__/product-server'; */
+
+function renderWithRouterMatch(
+  uiComponent,
+  {
+    path = '/',
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] })
+  } = {}
+) {
+  return {
+    ...render(
+      <BrowserRouter>
+        <Router history={history}>
+          <Route path={path} element={uiComponent} />
+        </Router>
+      </BrowserRouter>
+    )
+  };
+}
+
+describe('Product', () => {
+  it('should render an img', async () => {
+    renderWithRouterMatch(<Product />, {
+      path: 'products/product/:id',
+      route: 'products/product/notebook'
+    });
+    const text = screen.getByText('notebook');
+    screen.debug();
+    expect(text).toBeInTheDocument();
+  });
+});
+```
+
+or
+
+```
+import {
+  MemoryRouter,
+  Routes,
+  Route
+} from 'react-router';
+import '@testing-library/jest-dom';
+import { screen, render } from '@testing-library/react';
+import Product from '..';
+
+test('UseParams', async () => {
+  const someServiceId = 'notebook';
+
+  render(
+    <MemoryRouter initialEntries={[`products/product/${someServiceId}`]}>
+      <Routes>
+        <Route path="products/product/:id" element={<Product />} />
+      </Routes>
+    </MemoryRouter>
+  );
+
+  const txt = await screen.findByText(someServiceId);
+
+  screen.debug();
+
+  expect(txt).toBeInTheDocument();
+});
+```
